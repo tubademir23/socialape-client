@@ -10,14 +10,14 @@ import home from './pages/home';
 import Navbar from './components/Navbar';
   
 import './App.css';
-
+ 
 class App extends Component {
   render() {
 
     return (
       <div className="App">
         <Router>
-          <Navbar></Navbar>
+          <Navbar> </Navbar>
             <div className="container">
               <Switch>
                 <Route exact path="/" component={home}> </Route>

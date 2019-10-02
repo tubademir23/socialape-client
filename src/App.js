@@ -5,6 +5,7 @@ import {Container, Row, Col} from 'reactstrap'
 import login from './pages/login';
 import signup from './pages/signup';
 import home from './pages/home';
+import Navbar from './components/Navbar';
 
 import './App.css';
 
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
      
           <Router>
+            <Navbar>
             <Switch>
               <Route exact path="/" component={home}>
               </Route>
@@ -23,6 +25,7 @@ function App() {
               <Route exact path="/login" component={login}>
               </Route>
             </Switch>
+            </Navbar>
           </Router>
     </div>
   );

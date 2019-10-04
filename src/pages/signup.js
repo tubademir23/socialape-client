@@ -12,4 +12,4 @@ class signup extends Component {
     }
 }
 
-export default signup
+export default signup;

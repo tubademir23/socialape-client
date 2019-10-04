@@ -4,11 +4,12 @@ import React, {Component} from 'react';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CreateMuiTheme from '@material-ui/core/styles/createMuiTheme';
 // import logo from './logo.svg';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 // import {Container, Row, Col} from 'reactstrap'
 import login from './pages/login';
 import signup from './pages/signup';
 import home from './pages/home';
+
 import Navbar from './components/Navbar';
   
 import './App.css';
@@ -28,6 +29,9 @@ const theme = CreateMuiTheme({
       contrastText: '#000000',
     },
   },
+  typography:{
+    useNextVariants:true
+  }
 });
 class App extends Component {
   render() {
@@ -35,13 +39,15 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
+          <p>App</p>
           <Router>
             <Navbar> </Navbar>
               <div className="container">
                 <Switch>
-                  <Route exact path="/" component={home}> </Route>
-                  <Route path="/signup" component={signup}></Route>
-                  <Route path="/login" component={login}></Route>
+              
+                  <Route  path="/signup" component={signup}></Route>
+                  <Route  path="/login" component={login}></Route>
+                  <Route  path="/" component={home}></Route>
                 </Switch>
             </div>
           </Router>

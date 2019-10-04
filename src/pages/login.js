@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+// import Grid from '@material-ui/core/Grid';
 
 class login extends Component {
     render(){
@@ -7,9 +8,10 @@ class login extends Component {
                 <h1>
                     login page
                 </h1>
+              
             </div>
         )
     }
 }
 
-export default login
+export default login;

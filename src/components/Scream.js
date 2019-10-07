@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import withStyles from '@material-ui/core/styles/withStyles';
-import Link from 'react-router-dom/Link'
+import {Link} from 'react-router-dom/Link'
 //MUI card components..
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,31 +14,41 @@ const styles={
     card:{
         display:'flex',
         marginButtom:20
+    },
+    image:{
+        minWidth:200,
+        
+    },
+    content:{
+        padding:25,
+        objectFit:'cover'
     }
 }
-// same as props
+// same as props 
 class Scream extends Component {
     render(){
         const {classes, 
                 scream: {body, createdAt, userImage, userHandle, screamId, likeCount, commentCount}} = this.props
         //const classes=this.props
         return (
-            <Card>
-                <p><CardMedia
+            <Card className={classes.card}>
+                <CardMedia
                     image= {userImage} 
-                    title= "Profile image"> tt</CardMedia></p>
-                
-                <CardContent>
+                    title= "Profile image" className={classes.image}> </CardMedia>
+                <CardContent class={classes.content}>
                     <Typography 
                     variant="h5" 
                     component={Link} 
                     to={`/users/${userHandle}`}
                     color="primary"
 
-                    >{userHandle}</Typography>
-                    <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
+                    >{userHandle} &nbsp;
+                    <Typography variant="caption" color="primary">{likeCount} &nbsp; {commentCount} </Typography>
+                    </Typography>
+                    <Typography variant="overline" color="textPrimary">{screamId}</Typography>
+                    <Typography variant="body2" color="textPrimary">{createdAt}</Typography>
                     <Typography variant="body1" color="textSecondary">{body}</Typography>
-                    <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
+                    <Typography variant="subtitle2" color="textSecondary">{createdAt}</Typography>
                 </CardContent>
             </Card>
         )

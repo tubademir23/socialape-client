@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 
+import {Link} from 'react-router-dom';
 
 import AppIcon from '../images/dtvico.ico';
 import axios from 'axios';
@@ -10,10 +11,8 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-// import TextField from '@material-ui/core/TextField';
-
 import Button from '@material-ui/core/Button';
-import { write } from 'fs';
+
 
 const styles={
     form:{
@@ -58,7 +57,7 @@ class login extends Component {
         this.setState({
           loading: true
         });
-        
+
         const userData = {
           email: this.state.email,
           password: this.state.password
@@ -135,6 +134,10 @@ class login extends Component {
                         disabled={loading}>
                     Login
                    </Button>
+                   <br/>
+                   <small>
+                    dont have an account ? sign up <Link to="/signup">here</Link>
+                    </small>
                </form>
             </Grid>
             <Grid item sm >

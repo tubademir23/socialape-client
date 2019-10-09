@@ -32,13 +32,23 @@ class Scream extends Component {
     render(){
         dayjs.extend(relativeTime);
         const {classes, 
-                scream: {body, createdAt, userImage, userHandle, screamId, likeCount, commentCount}} = this.props
+                scream: {
+                    body, 
+                    createdAt, 
+                    userImage, 
+                    userHandle, 
+                    screamId,
+                    likeCount, 
+                    commentCount
+                }
+            } = this.props
         //const classes=this.props
         return (
             <Card className={classes.card}>
                 <CardMedia
                     image= {userImage} 
-                    title= "Profile image" className={classes.image}> </CardMedia>
+                    title= "Profile image" 
+                    className={classes.image}> </CardMedia>
                 <CardContent class={classes.content}>
                     <Typography 
                     variant="h5" 

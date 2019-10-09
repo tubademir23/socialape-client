@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 // import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-
+import {Formik} from "formik";
 import {Link} from 'react-router-dom';
 
 import AppIcon from '../images/dtvico.ico';
@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { CircularProgress } from '@material-ui/core';
 
 
 const styles={
@@ -28,7 +29,8 @@ const styles={
         margin: '10px auto 10px auto'
     },
     button: {
-        marginTop: 20 //'center',
+        marginTop: 20, //'center',
+        position:'relative'
     },
     customError: {
         color: 'red',
@@ -52,8 +54,10 @@ class login extends Component {
             errors:{}
         };
     }
+    componentDidMount() {
+    }
     handleSubmit = (event) => {
-        event.preventDefault();
+    
         this.setState({
           loading: true
         });
@@ -72,11 +76,13 @@ class login extends Component {
             this.props.history.push('/');
           })
           .catch((err) => {
+            
             this.setState({
               errors: err.response.data,
               loading: false
             });
           });
+          event.preventDefault();
       };
 
     handleChange= (event)=>{
@@ -95,8 +101,8 @@ class login extends Component {
             <Grid item sm ></Grid>
             <Grid item sm >
                <img src={AppIcon} alt="dtv" className={classes.image}/>
-               <Typography variant="h2" className={classes.pageTitle}>Login
-               </Typography>
+               {/* <Typography variant="h2" className={classes.pageTitle}>Login
+               </Typography> */}
                <form noValidate onSubmit={this.handleSubmit}>
                     <TextField
                         id="email"
@@ -109,18 +115,19 @@ class login extends Component {
                         value={this.state.email}
                         onChange={this.handleChange}
                         fullWidth
-                    />
-                   <TextField 
-                        id='password' 
-                        name='password' 
-                        type='password' 
-                        label='Password' 
-                        className={classes.textField} 
-                        value={this.state.password} 
-                        helperText={errors.password} 
-                        error={errors.password ? true :false } 
-                        onChange={this.handleChange} 
-                        fullWidth/>
+                        />
+                    <TextField
+                        id="password"
+                        name="password"
+                        type="password"
+                        label="Password"
+                        className={classes.textField}
+                        helperText={errors.password}
+                        error={errors.password ? true : false}
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        fullWidth
+                        />
                    {errors.general && (
                         <Typography variant="body2" className={classes.customError}>
                             {errors.general}
@@ -133,6 +140,7 @@ class login extends Component {
                         className={classes.button}
                         disabled={loading}>
                     Login
+                    {loading && (<CircularProgress size={30} className={classes.progress}/>)}
                    </Button>
                    <br/>
                    <small>
@@ -149,7 +157,7 @@ class login extends Component {
 }
 
 login.propTypes={
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired    
 };
 
 export default withStyles(styles) (login);

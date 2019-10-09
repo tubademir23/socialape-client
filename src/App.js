@@ -39,12 +39,10 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-          <p>App</p>
           <Router>
             <Navbar> </Navbar>
               <div className="container">
                 <Switch>
-              
                   <Route  path="/signup" component={signup}></Route>
                   <Route  path="/login" component={login}></Route>
                   <Route  path="/" component={home}></Route>
@@ -53,10 +51,8 @@ class App extends Component {
           </Router>
         </div>
       </MuiThemeProvider>
-      
     );
   }
 }
-
- export default App;
+export default App;
 // 

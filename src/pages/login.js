@@ -11,6 +11,7 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import { CircularProgress } from '@material-ui/core';
 
@@ -69,7 +70,7 @@ class login extends Component {
         axios
           .post('/login', userData)
           .then((res) => {
-            console.log(res.data);
+            
             this.setState({
               loading: false
             });
@@ -128,11 +129,16 @@ class login extends Component {
                         onChange={this.handleChange}
                         fullWidth
                         />
+                   <FormLabel>
+                       <p>hata {errors.general}</p>
+                   <br/>
+                  
                    {errors.general && (
                         <Typography variant="body2" className={classes.customError}>
                             {errors.general}
                         </Typography>
                     )}
+                    </FormLabel>
                    <Button 
                         type="submit" 
                         color="primary" 

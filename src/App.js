@@ -3,6 +3,11 @@ import React, {Component} from 'react';
 //material-ui color tools
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import CreateMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import themeFile from './util/theme';
+import jwtDeode from 'jwt-decode';
+
+
+
 // import logo from './logo.svg';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 // import {Container, Row, Col} from 'reactstrap'
@@ -13,26 +18,13 @@ import home from './pages/home';
 import Navbar from './components/Navbar';
   
 import './App.css';
- 
-const theme = CreateMuiTheme({
-  palette: {
-    primary: {
-      light: '#56b5b8',
-      main: '#188588',
-      dark: '#00585b',
-      contrastText: '#ffffff',
-    },
-    secondary: {
-      light: '#ffffff',
-      main: '#e2f1f1',
-      dark: '#b0bebe',
-      contrastText: '#000000',
-    },
-  },
-  typography:{
-    useNextVariants:true
-  }
-});
+const token=localStorage.FBIdToken;
+
+ if(token){
+ const decodedToken=jwtDeode(token);
+ console.log(decodedToken);
+}
+const theme = CreateMuiTheme(themeFile);
 class App extends Component {
   render() {
 

@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 // import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import {Formik} from "formik";
 import {Link} from 'react-router-dom';
 
 import AppIcon from '../images/dtvico.ico';
@@ -15,25 +14,27 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import { CircularProgress } from '@material-ui/core';
 
-
-const styles={
-    form:{
+const styles= {
+    typography:{
+        useNextVariants:true
+      },
+      form:{
         textAlign:'center'
-    },
-    image:{
-        margin: '20px auto 20px auto'
-    },
-    pageTitle:{
-        margin:'10px auto 10px auto'
-    },
-    textField:{
-        margin: '10px auto 10px auto'
-    },
-    button: {
-        marginTop: 20, //'center',
-        position:'relative'
-    },
-    customError: {
+      },
+      image:{
+          margin: '20px auto 20px auto'
+      },
+      pageTitle:{
+          margin:'10px auto 10px auto'
+      },
+      textField:{
+          margin: '10px auto 10px auto'
+      },
+      button: {
+          marginTop: 20, //'center',
+          position:'relative'
+      },
+      customError: {
         color: 'red',
         fontSize: '0.8rem',
         marginTop: 10
@@ -41,8 +42,7 @@ const styles={
       progress: {
         position: 'absolute'
       }
-};
-
+}
 class login extends Component {
     // two main way to get value form.
     //one is the reference get the values, the more poluer use in the state
@@ -70,7 +70,8 @@ class login extends Component {
         axios
           .post('/login', userData)
           .then((res) => {
-            
+            localStorage.setItem('FBIdToken', `${res.data.token}`);
+
             this.setState({
               loading: false
             });
